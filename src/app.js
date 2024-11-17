@@ -8,6 +8,7 @@ const userRoutes = require("./routes/userRoute");
 
 // Middleware cơ bản để parse JSON
 app.use(express.json());
+app.use(cors({ origin: "*" }));
 
 // Định nghĩa một route cơ bản tại đường dẫn `/`
 app.get("/", (req, res) => {
