@@ -8,25 +8,33 @@ const connectDB = require("./db/connect");
 const userRoutes = require("./routes/userRoute");
 
 // Middleware cơ bản để parse JSON
-const whitelist = [
+const allowedOrigins = [
   "http://localhost:3000",
-  "https://daovang-react.onrender.com/",
+  "https://daovang-react.onrender.com",
 ];
 
 app.use(express.json());
+
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Kiểm tra nếu origin nằm trong whitelist hoặc nếu không có origin (cho các request nội bộ)
-      if (!origin || whitelist.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true, // Cho phép gửi cookie hoặc thông tin đăng nhập
+    origin: allowedOrigins,
+    credentials: true,
   })
 );
+
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       // Kiểm tra nếu origin nằm trong whitelist hoặc nếu không có origin (cho các request nội bộ)
+//       if (!origin || whitelist.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//     credentials: true, // Cho phép gửi cookie hoặc thông tin đăng nhập
+//   })
+// );
 
 // Định nghĩa một route cơ bản tại đường dẫn `/`
 app.get("/", (req, res) => {
