@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express"); // Import thư viện Express
+const cors = require("cors");
 const app = express(); // Tạo một instance của Express
 
 const connectDB = require("./db/connect");
