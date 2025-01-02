@@ -6,6 +6,7 @@ const app = express(); // Tạo một instance của Express
 const connectDB = require("./db/connect");
 
 const userRoutes = require("./routes/userRoute");
+const lessonRoutes = require("./routes/lessonRoute");
 
 // Middleware cơ bản để parse JSON
 const allowedOrigins = [
@@ -42,6 +43,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/lesson", lessonRoutes);
 
 const port = process.env.PORT || 3000;
 const start = async () => {
