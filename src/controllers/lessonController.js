@@ -15,6 +15,7 @@ const getLesson = async (req, res) => {
 const deleteLesson = async (req, res) => {
   const { lessonId } = req.params;
   const lesson = await Lesson.findByIdAndDelete(lessonId);
+  const questions = await Question.deleteMany({ lesson: lessonId });
   console.log(lesson);
 
   res.status(200).json({ lesson });
